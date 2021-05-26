@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/pokesearch/static/css/main.7a889478.chunk.css",
+    "main.js": "/pokesearch/static/js/main.09bd0a89.chunk.js",
+    "main.js.map": "/pokesearch/static/js/main.09bd0a89.chunk.js.map",
+    "runtime-main.js": "/pokesearch/static/js/runtime-main.b6f881fa.js",
+    "runtime-main.js.map": "/pokesearch/static/js/runtime-main.b6f881fa.js.map",
+    "static/css/2.c1f4f5f4.chunk.css": "/pokesearch/static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.50c143b5.chunk.js": "/pokesearch/static/js/2.50c143b5.chunk.js",
+    "static/js/2.50c143b5.chunk.js.map": "/pokesearch/static/js/2.50c143b5.chunk.js.map",
+    "static/js/3.c21e8068.chunk.js": "/pokesearch/static/js/3.c21e8068.chunk.js",
+    "static/js/3.c21e8068.chunk.js.map": "/pokesearch/static/js/3.c21e8068.chunk.js.map",
+    "index.html": "/pokesearch/index.html",
+    "static/css/2.c1f4f5f4.chunk.css.map": "/pokesearch/static/css/2.c1f4f5f4.chunk.css.map",
+    "static/css/main.7a889478.chunk.css.map": "/pokesearch/static/css/main.7a889478.chunk.css.map",
+    "static/js/2.50c143b5.chunk.js.LICENSE.txt": "/pokesearch/static/js/2.50c143b5.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/pokesearch/static/media/Pokemon Hollow.47f77ce9.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b6f881fa.js",
+    "static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.50c143b5.chunk.js",
+    "static/css/main.7a889478.chunk.css",
+    "static/js/main.09bd0a89.chunk.js"
+  ]
+}
