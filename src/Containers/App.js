@@ -5,6 +5,7 @@ import CardList from "../Components/CardList";
 import SearchBox from "../Components/Searchbox";
 import "./App.css";
 import Scroll from "../Components/Scroll";
+import ErrorBoundary from "../Components/ErrorBoundary";
 
 class App extends Component {
     constructor() {
@@ -75,8 +76,11 @@ class App extends Component {
                 <div className="tc">
                     <h1 className="f1">Pokemon</h1>
                     <SearchBox searchChange={this.onSearchChange} />
+
                     <Scroll>
-                        <CardList pokeman={filterPokemans} />
+                        <ErrorBoundary>
+                            <CardList pokeman={filterPokemans} />
+                        </ErrorBoundary>
                     </Scroll>
                 </div>
             );
