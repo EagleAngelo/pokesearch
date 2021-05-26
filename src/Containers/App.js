@@ -1,9 +1,10 @@
 //import { render } from "@testing-library/react";
 import React, { Component } from "react";
-import CardList from "./CardList";
+import CardList from "../Components/CardList";
 //import { pokeman } from "./pokemanList";
-import SearchBox from "./Searchbox";
+import SearchBox from "../Components/Searchbox";
 import "./App.css";
+import Scroll from "../Components/Scroll";
 
 class App extends Component {
     constructor() {
@@ -52,39 +53,34 @@ class App extends Component {
     };
 
     render() {
-        console.log("render");
+        const { pokeman, field } = this.state;
 
-        if (this.state.pokeman.length === 0) {
-            console.log("render - if clause");
+        console.log("render - state.pokeman", pokeman);
+
+        let filterPokemans = pokeman.filter((pokeman) => {
+            return pokeman.name.toLowerCase().includes(field.toLowerCase());
+        });
+
+        console.log("render - filter", filterPokemans);
+
+        if (!pokeman.length) {
+            return (
+                <div className="tc">
+                    <h1 className="f1">Loading Pokemans</h1>
+                    <SearchBox searchChange={this.onSearchChange} />
+                </div>
+            );
+        } else {
             return (
                 <div className="tc">
                     <h1 className="f1">Pokemon</h1>
                     <SearchBox searchChange={this.onSearchChange} />
+                    <Scroll>
+                        <CardList pokeman={filterPokemans} />
+                    </Scroll>
                 </div>
             );
         }
-
-        console.log("render - state.pokeman", this.state.pokeman);
-
-        let filterPokemans = this.state.pokeman.filter((pokeman) => {
-            return pokeman.name
-                .toLowerCase()
-                .includes(this.state.field.toLowerCase());
-        });
-
-        if (filterPokemans.length === 0) {
-            filterPokemans = this.state.pokeman;
-        }
-
-        console.log("render - filter", filterPokemans);
-
-        return (
-            <div className="tc">
-                <h1 className="f1">Pokemon</h1>
-                <SearchBox searchChange={this.onSearchChange} />
-                <CardList pokeman={filterPokemans} />
-            </div>
-        );
     }
 }
 
