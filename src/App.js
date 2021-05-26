@@ -14,37 +14,37 @@ class App extends Component {
         };
     }
 
-    fetchPokeData = (pokemonData) => {
-        let allthepokemons = [];
-        pokemonData.results.forEach(async (pokemon) => {
-            await fetch(pokemon.url)
-                .then((response) => response.json())
-                .then((fullPokemon) => {
-                    //console.log(fullPokemon);
-                    allthepokemons.push(fullPokemon);
-                });
-        });
-        return allthepokemons;
-    };
+    componentDidMount() {
+        console.log("componentDidMount - fetching Data");
 
-    async componentDidMount() {
-        console.log("Page done. Loading pokemons.");
-
-        let pokeArray = [];
-
-        await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
             .then((response) => {
                 return response.json();
             })
             .then((pokeData) => {
-                pokeArray = this.fetchPokeData(pokeData);
-            });
+                const pokeArray = this.fetchPokeData(pokeData);
+                this.setState({ pokeman: pokeArray });
 
-        console.log("componentDidMount - pokearray contents", pokeArray);
-        console.log("componentDidMount - state.pokeman 1", this.state.pokeman);
-        this.setState({ pokeman: pokeArray });
-        console.log("componentDidMount - state.pokeman 2", this.state.pokeman);
+                console.log(
+                    "componentDidMount - state.pokeman",
+                    this.state.pokeman
+                );
+            });
     }
+
+    fetchPokeData = (pokemonData) => {
+        let allthepokemons = [];
+        pokemonData.results.forEach((pokemon) => {
+            fetch(pokemon.url)
+                .then((response) => response.json())
+                .then((fullPokemon) => {
+                    //this.setState({ pokeman: allthepokemons }); //uncommenting this line makes it work, however, it sets the state and triggers render 151 times
+                    allthepokemons.push(fullPokemon);
+                });
+        });
+
+        return allthepokemons;
+    };
 
     onSearchChange = (event) => {
         this.setState({ field: event.target.value });
@@ -52,6 +52,18 @@ class App extends Component {
     };
 
     render() {
+        console.log("render");
+
+        if (this.state.pokeman.length === 0) {
+            console.log("render - if clause");
+            return (
+                <div className="tc">
+                    <h1 className="f1">Pokemon</h1>
+                    <SearchBox searchChange={this.onSearchChange} />
+                </div>
+            );
+        }
+
         console.log("render - state.pokeman", this.state.pokeman);
 
         let filterPokemans = this.state.pokeman.filter((pokeman) => {
@@ -62,7 +74,6 @@ class App extends Component {
 
         if (filterPokemans.length === 0) {
             filterPokemans = this.state.pokeman;
-            //console.log("filter", this.state.pokeman);
         }
 
         console.log("render - filter", filterPokemans);
