@@ -19,13 +19,14 @@ class App extends Component {
     componentDidMount() {
         console.log("componentDidMount - fetching Data");
 
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+        const pokemonLimit = 151; //hardcoded because why not
+
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=" + pokemonLimit)
             .then((response) => {
                 return response.json();
             })
             .then((pokeData) => {
-                const pokeArray = this.fetchPokeData(pokeData);
-                this.setState({ pokeman: pokeArray });
+                this.fetchPokeData(pokeData, pokemonLimit);
 
                 console.log(
                     "componentDidMount - state.pokeman",
@@ -34,18 +35,19 @@ class App extends Component {
             });
     }
 
-    fetchPokeData = (pokemonData) => {
+    fetchPokeData = (pokemonData, pokemonLimit) => {
         let allthepokemons = [];
         pokemonData.results.forEach((pokemon) => {
             fetch(pokemon.url)
                 .then((response) => response.json())
                 .then((fullPokemon) => {
-                    //this.setState({ pokeman: allthepokemons }); //uncommenting this line makes it work, however, it sets the state and triggers render 151 times
                     allthepokemons.push(fullPokemon);
+                    if (allthepokemons.length === pokemonLimit) {
+                        allthepokemons.sort((a, b) => (a.id > b.id ? 1 : -1));
+                        this.setState({ pokeman: allthepokemons });
+                    }
                 });
         });
-
-        return allthepokemons;
     };
 
     onSearchChange = (event) => {
