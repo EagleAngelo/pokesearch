@@ -1,7 +1,18 @@
-# A pokemon search api thingy
+## A pokemon search api thingy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An experiment for react hooks and front end development
 
-## Available Scripts
+---
 
-Still in Progress
+Created with React JS
+Using Tachyons for CSS
+
+# Uses the Pokemon API for data fetching
+
+https://pokeapi.co/
+
+# Pictures from Pokeres
+
+https://pokeres.bastionbot.org
+
+MIT License. Non profit.

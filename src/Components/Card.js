@@ -1,9 +1,10 @@
 import React from "react";
+import "./Card.css";
 
 const Card = ({ id, name, type }) => {
     //const {id, name, type} = props;
     return (
-        <div className="bg-light-green dib br3 pa3 ma2 w-10 h-10 f6 f3-l grow bw2 shadow-5">
+        <div className="pokecard bg-light-green dib br3 pa3 ma2 w-25 h-25 f6 f5-l grow bw2 shadow-5">
             <img
                 alt="Pokemon"
                 src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
